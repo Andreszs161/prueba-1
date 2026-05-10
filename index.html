@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectHub - Organizador de Proyectos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>ProjectHub</h1>
+            <nav class="nav-tabs">
+                <button class="tab-btn active" data-tab="projects">Proyectos</button>
+                <button class="tab-btn" data-tab="templates">Plantillas</button>
+                <button class="tab-btn" data-tab="notes">Notas Globales</button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Projects Section -->
+            <section id="projects" class="tab-content active">
+                <div class="bento-grid projects-grid">
+                    <div class="bento-card add-project-card">
+                        <button id="btn-new-project" class="card-add-btn">
+                            <span class="plus-icon">+</span>
+                            <span>Nuevo Proyecto</span>
+                        </button>
+                    </div>
+                    <div id="projects-list" class="projects-list"></div>
+                </div>
+            </section>
+
+            <!-- Templates Section -->
+            <section id="templates" class="tab-content">
+                <div class="bento-grid templates-grid">
+                    <div class="bento-card add-template-card">
+                        <button id="btn-new-template" class="card-add-btn">
+                            <span class="plus-icon">+</span>
+                            <span>Nueva Plantilla</span>
+                        </button>
+                    </div>
+                    <div id="templates-list" class="templates-list"></div>
+                </div>
+            </section>
+
+            <!-- Global Notes Section -->
+            <section id="notes" class="tab-content">
+                <div class="bento-card notes-card">
+                    <textarea id="global-notes-editor" placeholder="Escribe tus notas globales aquí..."></textarea>
+                    <button id="btn-save-notes" class="btn-primary">Guardar Notas</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal for New/Edit Project -->
+        <dialog id="project-modal" class="modal">
+            <form method="dialog" class="modal-content">
+                <h2 id="modal-title">Nuevo Proyecto</h2>
+                <input type="hidden" id="project-id">
+                <div class="form-group">
+                    <label for="project-name">Nombre</label>
+                    <input type="text" id="project-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Descripción</label>
+                    <textarea id="project-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-status">Estado</label>
+                    <select id="project-status">
+                        <option value="planning">Planificación</option>
+                        <option value="active">Activo</option>
+                        <option value="on-hold">En Pausa</option>
+                        <option value="completed">Completado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="project-tech">Tecnologías</label>
+                    <input type="text" id="project-tech" placeholder="React, Python, SQLite...">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel-project" class="btn-secondary">Cancelar</button>
+                    <button type="submit" id="btn-save-project" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Project Detail View -->
+        <aside id="project-detail" class="project-detail">
+            <button id="btn-close-detail" class="btn-close">×</button>
+            <div id="detail-content"></div>
+        </aside>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
